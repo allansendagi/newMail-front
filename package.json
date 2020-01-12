@@ -27,8 +27,8 @@
       ">0.2%",
       "not dead",
       "not op_mini all"
-    ],
-    "proxy": "https://us-central1-immediatemail-b8929.cloudfunctions.net/api",
+    ], 
+    "proxy":"https://us-central1-immediatemail-b8929.cloudfunctions.net/api",
 
     "development": [
       "last 1 chrome version",
