@@ -19,6 +19,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy":"https://us-central1-immediatemail-b8929.cloudfunctions.net/api",
+
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -28,8 +30,6 @@
       "not dead",
       "not op_mini all"
     ], 
-    "proxy":"https://us-central1-immediatemail-b8929.cloudfunctions.net/api",
-
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

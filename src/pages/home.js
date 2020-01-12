@@ -10,18 +10,23 @@ class home extends Component {
 	}
 	componentDidMount(){
 		axios.get('/mails')
-		  .then(res => {
-		  	console.log(res.data)
-		  	this.setState({
-		  		mails: res.data
-		  	})
-		  })
-		  .catch((err) => console.log(err));
+		.then(response => {
+			console.log(response.data)
+			this.setState({
+				mails: response.data
+			})
+		})
+		.catch(err => console.log(err))
+		// .then(response=>response.json())
+		// .then(response => response.json())
+		// .then(data=>console.log(data))
+	  
 	}
 	render() {
-		let recentMailsMarkup = this.state.mails ? (
-			this.state.mails.map((mail) => <Mail mail={mail}/>)
-			): <p>Loading...</p>
+		let recentMailsMarkup = this.state.mails?(
+			this.state.mails.map(mail => <p>{mail.body }</p>)
+			):<p>Loading...</p>
+		
 		return (
 		 <Grid container spacing={10}>
 		   <Grid item sm={8} xs={12}>
@@ -32,7 +37,7 @@ class home extends Component {
 		   </Grid>
 		 </Grid>
 		
-		)
+		);
 	}
 }
 
