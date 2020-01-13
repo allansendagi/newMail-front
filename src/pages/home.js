@@ -17,14 +17,13 @@ class home extends Component {
 			})
 		})
 		.catch(err => console.log(err))
-		// .then(response=>response.json())
-		// .then(response => response.json())
-		// .then(data=>console.log(data))
+		
 	  
 	}
 	render() {
+
 		let recentMailsMarkup = this.state.mails?(
-			this.state.mails.map(mail => <p>{mail.body }</p>)
+			this.state.mails.map((mail) => <Mail mail={mail} />)
 			):<p>Loading...</p>
 		
 		return (
