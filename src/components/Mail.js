@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/styles/withStyles';
+import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 //
 import Card from '@material-ui/core/Card';
@@ -8,25 +9,48 @@ import CardMedia from '@material-ui/core/CardMedia';
 
 const styles ={
 	card: {
-		display: 'flex'
+		display: 'flex',
+		marginBottom: 20,
+
+	},
+	image:{
+		minWidth:200,
+	},
+	content:{
+		padding: 25,
+		objectFit: 'cover'
 	}
 }
 
 class Mail extends Component {
 	render() {
-	const {classes, mail : {userImage, userHandle, body, createdAt, mailId, likeCount, commentCount} } = this.props;
-	// const {body,createdAt, userImage, userHandle, mailId, likeCount, commentCount} = this.props;
+	const {classes, mail : {body,
+        createdAt,
+        userImage,
+        userHandle,
+        mailId,
+        likeCount,
+        commentCount} } = this.props;
 		return(
-			<Card>
-			  <CardMedia
-			  image= {userImage}
-			   title="profile image"/>
-			    <CardContent>
+			<Card className={classes.card}>
+			<CardMedia
+	          image={userImage}
+	          title="Profile image"
+	          className={classes.image}
+	          />
+			    <CardContent className={classes.content}>
 			    <Typography 
-			     variant="h5">
+			     variant="h5" 
+			     component={Link} 
+			     to={`/users/${userHandle}`}
+			     color='primary'
+			     >
 			     {userHandle}
 			     </Typography>
-			   <Typography variant="body2" color="textSecondary">{createdAt}</Typography>
+			   <Typography 
+			   variant="body2" color="textSecondary">
+			   {createdAt}
+			   </Typography>
 			   <Typography variant="body1">{body}</Typography>
 			  </CardContent>  
 			</Card>

@@ -23,7 +23,7 @@ class home extends Component {
 	render() {
 
 		let recentMailsMarkup = this.state.mails?(
-			this.state.mails.map((mail) => <Mail mail={mail} />)
+			this.state.mails.map((mail) => <Mail key={mail.mailId} mail={mail} />)
 			):<p>Loading...</p>
 		
 		return (
