@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import withStyles from '@material-ui/styles/withStyles';
 import { Link } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
 //
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -24,6 +27,8 @@ const styles ={
 
 class Mail extends Component {
 	render() {
+		dayjs.extend(relativeTime);
+
 	const {classes, mail : {body,
         createdAt,
         userImage,
@@ -49,7 +54,7 @@ class Mail extends Component {
 			     </Typography>
 			   <Typography 
 			   variant="body2" color="textSecondary">
-			   {createdAt}
+			   {dayjs(createdAt).fromNow()}
 			   </Typography>
 			   <Typography variant="body1">{body}</Typography>
 			  </CardContent>  
