@@ -27,7 +27,30 @@ const theme = createMuiTheme({
       dark: '#ba000d',
       contrastText: '#fff',
     }
-  }
+  },
+  spreadIt: {
+  form: {
+    textAlign: 'center'
+  },
+  image: {
+    margin: '10px auto 20px auto'
+  },
+  pageTitle: {
+    margin:'10px auto 20px auto'
+  },
+  textField: {
+    margin: '10px auto 20px auto'
+  },
+  button: {
+    marginTop: 20,
+    position: 'relative'
+  },
+  customError: {
+    color: 'red',
+    fontSize: '0.8rem'
+  },
+  progress: 'absolute'
+ }
 });
 
 class App extends Component {
