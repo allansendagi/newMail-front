@@ -8,7 +8,7 @@ export const loginUser = (userData, history) => (dispatch) => {
 	   .then((res) => {
 				const FBIdToken = `Bearer ${res.data.token}`;
 			    localStorage.setItem('FBIdToken', FBIdToken);
-			    axios.defaults.headers.common['Authrization'] = FBIdToken;
+			    axios.defaults.headers.common['Authorization'] = FBIdToken;
 			    dispatch(getUserData());
 			    dispatch({ type: CLEAR_ERRORS})
 				history.push('/');
