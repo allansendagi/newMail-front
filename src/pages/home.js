@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import Mail from '../components/Mail';
+import Profile from '../components/profile';
+
 
 
 class home extends Component {
@@ -32,7 +34,7 @@ class home extends Component {
 		   		{recentMailsMarkup}
 		   </Grid>
 		   <Grid item sm={4} xs={12}>
-		    <p>profile</p>
+		    <Profile />
 		   </Grid>
 		 </Grid>
 		
