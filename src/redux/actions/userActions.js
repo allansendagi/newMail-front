@@ -58,6 +58,14 @@ export const signupUser = (newUserData, history) => (dispatch) => {
 				})
 		  })
 	 }
+export const uploadImage = (formData)=>(dispatch)=> {
+	dispatch({ type: LOADING_USER});
+	axios.post('/usr/image', formData)
+	 	.then(() => {
+	 		dispatch(getUserData())
+	 	})
+	 	.catch(err => console.log(err))
+}
 
 const setAuthorizationHeader = (token) => {
 	const FBIdToken = `Bearer ${token}`;
