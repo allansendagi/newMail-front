@@ -4,6 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import EditDetails from './editdetails';
+import MyButton from '../util/MyButton';
 
 //mui
 import Button from '@material-ui/core/Button';
@@ -62,11 +63,11 @@ let profileMarkup = !loading ? (authenticated ? (
 	       id='imageInput'
 	       hidden='hidden' 
 	       onChange={this.handleImageChange} />
-	      <Tooltip title='Edit profile picture' placement='top'>
-	       <IconButton onClick={this.handleEditPicture} className='button'>
+	
+	       <MyButton tip='Edit profile picture' onClick={this.handleEditPicture} btnClassName='button'>
 	         <EditIcon color='primary' />
-	        </IconButton>
-	       </Tooltip>
+	       </MyButton>
+
 	   </div>
 	   <hr />
 	   <div className='profile-details'>
