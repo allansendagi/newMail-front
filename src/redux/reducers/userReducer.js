@@ -2,7 +2,9 @@ import {
   SET_USER, 
   SET_AUTHENTICATED,
   SET_UNAUTHENTICATED, 
-  LOADING_USER
+  LOADING_USER,
+  LIKE_MAIL,
+  UNLIKE_MAIL
 } from '../types'
 
 const initialState = {
@@ -33,6 +35,23 @@ export default function(state = initialState, action){
 				...state,
 				loading:true
 			}
+		case LIKE_MAIL:
+		return {
+			...state,
+			likes: [
+			...state.likes,
+			{
+				userHandle:state.credentials.handle,
+				mailId: action.payload.mailId
+		    }
+
+		  ]
+		}
+		case UNLIKE_MAIL:
+		 return {
+		 	...state,
+		 	likes: state.likes.filter(like => like.mailId === action.payload.mailId)
+		 }
 		default:
 			return state
 	}

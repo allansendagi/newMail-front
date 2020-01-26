@@ -1,32 +1,28 @@
 import React, {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import Mail from '../components/Mail';
 import Profile from '../components/profile';
+import { connect } from 'react-redux';
+import { getMails } from '../redux/actions/dataactions';
 
 
 
 class home extends Component {
-	state = {
-		mails: null
-	}
-	componentDidMount(){
-		axios.get('/mails')
-		.then(response => {
-			console.log(response.data)
-			this.setState({
-				mails: response.data
-			})
-		})
-		.catch(err => console.log(err))
-		
-	  
-	}
-	render() {
 
-		let recentMailsMarkup = this.state.mails?(
-			this.state.mails.map((mail) => <Mail key={mail.mailId} mail={mail} />)
-			):<p>Loading...</p>
+	componentDidMount(){
+		this.props.getMails()
+		}
+
+	render() {
+		const { mails,loading } = this.props.data;
+		let recentMailsMarkup = loading?(
+			mails.map((mail) => 
+				<Mail key={mail.mailId} mail={mail} />)
+
+			): (<p>Loading...</p>
+			)
 		
 		return (
 		 <Grid container spacing={10}>
@@ -41,5 +37,13 @@ class home extends Component {
 		);
 	}
 }
+home.propTypes = {
+getMails: PropTypes.func.isRequired,
+data: PropTypes.object.isRequired
+}
 
-export default home;
+const mapStateToProps = state => ({
+	data: state.data
+})
+
+export default connect(mapStateToProps, { getMails })(home);

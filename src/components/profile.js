@@ -11,8 +11,7 @@ import Button from '@material-ui/core/Button';
 import MuiLink from '@material-ui/core/link'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
+
 
 
 //redux
@@ -96,11 +95,11 @@ let profileMarkup = !loading ? (authenticated ? (
 	   	<CalendarToday color='primary'/>{''}
 	   	<span> Joined {dayjs(createdAt).format('MM YYYY')} </span>
 	   </div>
-	   <Tooltip title='logout' placement='top'>
-	     <IconButton onClick={this.handleLogout}>
-	      <KeyboardReturn color='primary'/>
-	     </IconButton>
-	   </Tooltip>
+	  
+	       <MyButton tip='logout' onClick={this.handleLogout}>
+	         <KeyboardReturn color='primary' />
+	       </MyButton>
+
 	    <EditDetails/>
 	  </div>
 	</Paper>
