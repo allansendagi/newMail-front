@@ -2,8 +2,7 @@ import { SET_MAILS, LOADING_DATA, LIKE_MAIL, UNLIKE_MAIL } from '../types';
 import axios from 'axios';
 
 //Get all mails
-
-export const getMail = () => dispatch => {
+export const getMails = () => dispatch => {
 	dispatch({ type: LOADING_DATA })
 	axios.get('/mails')
 	 .then(res => {
@@ -43,5 +42,5 @@ export const unlikeMail = (mailId) => (dispatch) => {
 	 })
 	 .catch(err => console.log(err))
 
-
+}
 

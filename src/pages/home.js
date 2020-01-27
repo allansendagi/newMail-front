@@ -17,12 +17,10 @@ class home extends Component {
 
 	render() {
 		const { mails,loading } = this.props.data;
-		let recentMailsMarkup = loading?(
-			mails.map((mail) => 
-				<Mail key={mail.mailId} mail={mail} />)
-
-			): (<p>Loading...</p>
-			)
+		let recentMailsMarkup = !loading? (
+			mails.map((mail) => <Mail key={mail.mailId} mail={mail} />)
+			) : (<p>Loading...</p>
+		)
 		
 		return (
 		 <Grid container spacing={10}>
