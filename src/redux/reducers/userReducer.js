@@ -50,7 +50,7 @@ export default function(state = initialState, action){
 		case UNLIKE_MAIL:
 		 return {
 		 	...state,
-		 	likes: state.likes.filter(like => like.mailId === action.payload.mailId)
+		 	likes: state.likes.filter(like => like.mailId !== action.payload.mailId)
 		 }
 		default:
 			return state

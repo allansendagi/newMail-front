@@ -1,11 +1,17 @@
-import { SET_MAILS, LOADING_DATA, LIKE_MAIL, UNLIKE_MAIL } from '../types';
+import { SET_MAILS,
+	    LOADING_DATA, 
+	    LIKE_MAIL, 
+	    UNLIKE_MAIL 
+	} from '../types';
+
 import axios from 'axios';
 
 //Get all mails
-export const getMails = () => dispatch => {
+export const getMails = () => (dispatch) => {
 	dispatch({ type: LOADING_DATA })
-	axios.get('/mails')
-	 .then(res => {
+	axios
+	 .get('/mails')
+	 .then((res)=> {
 	 	dispatch({
 	 		type: SET_MAILS,
 	 		payload: res.data
@@ -21,19 +27,21 @@ export const getMails = () => dispatch => {
 
 //like mail
 export const likeMail = (mailId)=>(dispatch)=> {
-	axios.get(`/mail/${mailId}/like`)
-	 .then(res => {
+	axios
+	.get(`/mail/${mailId}/like`)
+	 .then((res) => {
 	 	dispatch({
 	 		type: LIKE_MAIL,
 	 		payload: res.data
 	 	})
 	 })
-	 .catch(err => console.log(err))
+	 .catch((err) => console.log(err))
 
 }
 //unlike mail
 export const unlikeMail = (mailId) => (dispatch) => {
-	axios.get(`/mail/${mailId}/unlike`)
+	axios
+	 .get(`/mail/${mailId}/unlike`)
 	 .then(res => {
 	 	dispatch({
 	 		type: UNLIKE_MAIL,

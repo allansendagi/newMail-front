@@ -10,7 +10,6 @@ import { getMails } from '../redux/actions/dataactions';
 
 
 class home extends Component {
-
 	componentDidMount(){
 		this.props.getMails()
 		}
