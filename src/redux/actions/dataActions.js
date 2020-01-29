@@ -11,8 +11,9 @@ export const getMails = () => (dispatch) => {
 	dispatch({ type: LOADING_DATA })
 	axios
 	 .get('/mails')
-	 .then((res)=> {
+	 .then(res=> {
 	 	dispatch({
+
 	 		type: SET_MAILS,
 	 		payload: res.data
 	 	})
@@ -28,7 +29,7 @@ export const getMails = () => (dispatch) => {
 //like mail
 export const likeMail = (mailId)=>(dispatch)=> {
 	axios
-	.get(`/mail/${mailId}/like`)
+	 .get(`/update/${mailId}/like`)
 	 .then((res) => {
 	 	dispatch({
 	 		type: LIKE_MAIL,
@@ -41,7 +42,7 @@ export const likeMail = (mailId)=>(dispatch)=> {
 //unlike mail
 export const unlikeMail = (mailId) => (dispatch) => {
 	axios
-	 .get(`/mail/${mailId}/unlike`)
+	 .get(`/update/${mailId}/unlike`)
 	 .then(res => {
 	 	dispatch({
 	 		type: UNLIKE_MAIL,
