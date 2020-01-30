@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { likeMail, unlikeMail } from '../redux/actions/dataactions';
 import PropTypes from 'prop-types';
 import MyButton from '../util/MyButton';
+import DeleteMail from './deletemail';
 
 //MUI
 import Card from '@material-ui/core/Card';
@@ -58,7 +59,8 @@ unlikeMail = () => {
         commentCount
     },
     user: {
-    	authenticated
+    	authenticated,
+    	credentials: { handle }
     }
      } = this.props;
      const likeButton = !authenticated ? (
@@ -78,6 +80,10 @@ unlikeMail = () => {
      	</MyButton>
       )
      )
+     const deleteButton = authenticated && userHandle === handle ? (
+     	  <DeleteMail mailId={mailId} />
+     	)
+     		: null
 
 		return(
 			<Card className={classes.card}>
@@ -95,6 +101,7 @@ unlikeMail = () => {
 			     >
 			     {userHandle}
 			     </Typography>
+			     {deleteButton}
 			   <Typography 
 			   variant="body2" color="textSecondary">
 			   {dayjs(createdAt).fromNow()}

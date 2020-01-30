@@ -1,7 +1,8 @@
 import { SET_MAILS,
 	    LOADING_DATA, 
 	    LIKE_MAIL, 
-	    UNLIKE_MAIL 
+	    UNLIKE_MAIL,
+	    DELETE_MAIL
 	} from '../types';
 
 import axios from 'axios';
@@ -51,5 +52,12 @@ export const unlikeMail = (mailId) => (dispatch) => {
 	 })
 	 .catch(err => console.log(err))
 
+}
+export const deleteMail = (mailId) => (dispatch)=> {
+	axios.delete(`/mail/&{mailId}`)
+	.then(() => {
+		dispatch({ type: DELETE_MAIL, payload: mailId})
+	})
+	.catch(err => console.log(err))
 }
 

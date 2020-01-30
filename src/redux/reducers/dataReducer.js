@@ -3,7 +3,8 @@ import {
 	 LIKE_MAIL, 
 	 UNLIKE_MAIL, 
 	 LOADING_DATA ,
-	 SET_MAIL
+	 SET_MAIL,
+	 DELETE_MAIL
 	} from '../types';
 
 const initialState ={
@@ -42,6 +43,13 @@ export default function(state=initialState, action) {
 		return {
 			...state
 		}
+		case DELETE_MAIL:
+			index = state.mails.findIndex(mail => mail.mailId===action.payload)
+			state.mails.splice(index,1);
+			 return {
+			 	...state
+			 }
+
 		default: 
 		return state
 	}
