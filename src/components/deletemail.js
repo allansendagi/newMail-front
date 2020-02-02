@@ -15,7 +15,11 @@ import { connect } from 'react-redux';
 import { deleteMail } from '../redux/actions/dataactions';
 
 const styles = {
-
+	deleteButton: {
+		position: 'absolute',
+		left: '90%',
+		top: '10%'
+	}
 }
 
 export class DeleteMail extends Component {

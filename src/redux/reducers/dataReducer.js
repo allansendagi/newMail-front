@@ -4,7 +4,8 @@ import {
 	 UNLIKE_MAIL, 
 	 LOADING_DATA ,
 	 SET_MAIL,
-	 DELETE_MAIL
+	 DELETE_MAIL,
+	 POST_MAIL
 	} from '../types';
 
 const initialState ={
@@ -48,7 +49,15 @@ export default function(state=initialState, action) {
 			state.mails.splice(index,1);
 			 return {
 			 	...state
-			 }
+			 };
+		case POST_MAIL:
+		return {
+			...state,
+			mails:[
+			 action.payload,
+			 ...state.mails
+			]
+		}
 
 		default: 
 		return state

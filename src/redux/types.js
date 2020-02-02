@@ -15,5 +15,7 @@ export const SET_MAIL = 'SET_MAIL';
 export const LIKE_MAIL = 'LIKE_MAIL';
 export const UNLIKE_MAIL = 'UNLIKE_MAIL';
 export const DELETE_MAIL = 'DELETE_MAIL';
+export const POST_MAIL = 'POST_MAIL';
+
 
   

@@ -2,7 +2,11 @@ import { SET_MAILS,
 	    LOADING_DATA, 
 	    LIKE_MAIL, 
 	    UNLIKE_MAIL,
-	    DELETE_MAIL
+	    DELETE_MAIL,
+	    SET_ERRORS,
+	    POST_MAIL,
+	    CLEAR_ERRORS,
+	    LOADING_UI
 	} from '../types';
 
 import axios from 'axios';
@@ -26,6 +30,26 @@ export const getMails = () => (dispatch) => {
 	 	})
 	 })
 }
+
+//post a scream
+
+export const postMail = (newmail) => (dispatch) => {
+	dispatch({type: LOADING_UI});
+	axios.post('/update', newmail)
+	 .then(res => {
+	 	dispatch({
+	 		type: POST_MAIL,
+	 		payload: res.data
+	 	})
+	 	dispatch({ type: CLEAR_ERRORS })
+	 })
+	 .catch(err => {
+	 	dispatch({
+	 		type: SET_ERRORS,
+	 		payload: err.res.data
+	 	})
+	 }) 
+} 
 
 //like mail
 export const likeMail = (mailId)=>(dispatch)=> {
