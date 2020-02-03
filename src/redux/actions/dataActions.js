@@ -33,9 +33,9 @@ export const getMails = () => (dispatch) => {
 
 //post a scream
 
-export const postMail = (newmail) => (dispatch) => {
+export const postMail = (newMail) => (dispatch) => {
 	dispatch({type: LOADING_UI});
-	axios.post('/update', newmail)
+	axios.post('/update', newMail)
 	 .then(res => {
 	 	dispatch({
 	 		type: POST_MAIL,
@@ -46,7 +46,7 @@ export const postMail = (newmail) => (dispatch) => {
 	 .catch(err => {
 	 	dispatch({
 	 		type: SET_ERRORS,
-	 		payload: err.res.data
+	 		payload: err.resp.data
 	 	})
 	 }) 
 } 
