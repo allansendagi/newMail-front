@@ -35,18 +35,19 @@ export const getMails = () => (dispatch) => {
 
 export const postMail = (newMail) => (dispatch) => {
 	dispatch({type: LOADING_UI});
-	axios.post('/update', newMail)
-	 .then(res => {
+	axios
+	  .post('/update', newMail)
+	  .then(response => {
 	 	dispatch({
 	 		type: POST_MAIL,
-	 		payload: res.data
+	 		payload: response.data
 	 	})
 	 	dispatch({ type: CLEAR_ERRORS })
 	 })
 	 .catch(err => {
 	 	dispatch({
 	 		type: SET_ERRORS,
-	 		payload: err.resp.data
+	 		payload: err.response.data
 	 	})
 	 }) 
 } 
