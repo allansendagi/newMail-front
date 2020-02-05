@@ -46,7 +46,7 @@ handleEditPicture = () => {
 handleLogout = () => {
 	this.props.logoutUser()
 }
-	render() {
+render() {
 		const { classes, user: {credentials:{ handle, createdAt, imageUrl, bio, website, location },
 		loading,
 		authenticated

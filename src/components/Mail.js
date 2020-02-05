@@ -59,6 +59,7 @@ unlikeMail = () => {
         likeCount,
         commentCount
     },
+    
     user: {
     	authenticated,
     	credentials: { handle }
