@@ -1,4 +1,5 @@
 import { SET_MAILS,
+		SET_MAIL,
 	    LOADING_DATA, 
 	    LIKE_MAIL, 
 	    UNLIKE_MAIL,
@@ -6,7 +7,8 @@ import { SET_MAILS,
 	    SET_ERRORS,
 	    POST_MAIL,
 	    CLEAR_ERRORS,
-	    LOADING_UI
+	    LOADING_UI,
+	    STOP_LOADING_UI
 	} from '../types';
 
 import axios from 'axios';
@@ -31,23 +33,36 @@ export const getMails = () => (dispatch) => {
 	 })
 }
 
+export const getMail = (mailId) => dispatch=> {
+dispatch({ type: LOADING_UI })
+axios.get(`/mail/${mailId}`)
+.then(res => {
+	dispatch({
+		type: SET_MAIL,
+		payload: res.data
+	})
+	dispatch({ type: STOP_LOADING_UI})
+})
+.catch(err => console.log(err))
+}
+
 //post a scream
 
 export const postMail = (newMail) => (dispatch) => {
 	dispatch({type: LOADING_UI});
 	axios
 	  .post('/update', newMail)
-	  .then(response => {
+	  .then(res => {
 	 	dispatch({
 	 		type: POST_MAIL,
-	 		payload: response.data
+	 		payload: res.data
 	 	})
 	 	dispatch({ type: CLEAR_ERRORS })
 	 })
 	 .catch(err => {
 	 	dispatch({
 	 		type: SET_ERRORS,
-	 		payload: err.response.data
+	 		payload: err.res.data
 	 	})
 	 }) 
 } 
@@ -85,4 +100,18 @@ export const deleteMail = (mailId) => (dispatch)=> {
 	})
 	.catch(err => console.log(err))
 }
+
+export const clearErrors =() => dispatch=> {
+	dispatch({ type: CLEAR_ERRORS})
+}
+
+
+
+
+
+
+
+
+
+
 

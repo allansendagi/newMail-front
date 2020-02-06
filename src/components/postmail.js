@@ -16,20 +16,22 @@ import CloseIcon from '@material-ui/icons/Close';
 
 //redux
 import { connect } from 'react-redux';
-import { postMail } from '../redux/actions/dataactions';
+import { postMail, clearErrors } from '../redux/actions/dataactions';
 
 const styles = theme => ({
 
 	submitButton: {
-		position: 'relative'
+		position: 'relative',
+		float: 'right',
+		marginTop: 10
 	},
 	progressSpinner: {
 		position: 'absolute'
 	},
 	closeButton: {
 		position: 'absolute',
-		left: '90%',
-		top: '10%'
+		left: '91%',
+		top: '6%'
 	}
 })
 class PostMail extends Component {
@@ -44,12 +46,15 @@ class PostMail extends Component {
 				errors: nextProps.UI.errors
 			})
 		}
+		if (!nextProps.UI.errors && !nextProps.UI.loading) {
+			this.setState({body: '', open: false, errors:{}});		}
 	}
 	handleOpen = () => {
 		this.setState({open: true})
 	}
 	handleClose= () => {
-		this.setState({open: false})
+		this.props.clearErrors()
+		this.setState({open: false, errors: {}})
 	}
 	handleChange=(event) => {
 		this.setState({[event.target.name] : event.target.value})
@@ -105,13 +110,14 @@ class PostMail extends Component {
 }
 PostMail.propTypes = {
 	postMail: PropTypes.func.isRequired,
-	UI: PropTypes.object.isRequired
+	clearErrors: PropTypes.func.isRequired,
+	UI: PropTypes.object.isRequired,
 }
 const mapStateToProps = (state) => ({
 	UI: state.UI
 })
 
-export default connect(mapStateToProps, { postMail })(withStyles(styles)(PostMail))
+export default connect(mapStateToProps, { postMail, clearErrors })(withStyles(styles)(PostMail))
 
 
 

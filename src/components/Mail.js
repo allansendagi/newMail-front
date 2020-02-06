@@ -9,6 +9,7 @@ import { likeMail, unlikeMail } from '../redux/actions/dataactions';
 import PropTypes from 'prop-types';
 import MyButton from '../util/MyButton';
 import DeleteMail from './deletemail';
+import MailDialog from './mailDialog';
 
 //MUI
 import Card from '@material-ui/core/Card';
@@ -115,6 +116,7 @@ unlikeMail = () => {
 			     <ChatIcon color='primary' />
 			    </MyButton>
 			    <span>{commentCount} comments</span>
+			    <MailDialog mailId={mailId} userHandle={userHandle} />
 			  </CardContent>  
 			</Card>
 		)
