@@ -47,12 +47,18 @@ handleLogout = () => {
 	this.props.logoutUser()
 }
 render() {
-		const { classes, user: {credentials:{ handle, createdAt, imageUrl, bio, website, location },
-		loading,
-		authenticated
-	}
-} = this.props;
-let profileMarkup = !loading ? (authenticated ? (
+		const { 
+			classes, 
+			user: {
+				credentials: { handle, createdAt, imageUrl, bio, website, location },
+		        loading,
+		        authenticated
+	          }
+            } = this.props;
+
+
+let profileMarkup = !loading ? (
+	authenticated ? (
 	<Paper className={classes.paper}>
 	  <div className={classes.profile}>
 	   <div className='image-wrapper'>

@@ -35,7 +35,7 @@ export const getMails = () => (dispatch) => {
 
 export const getMail = (mailId) => dispatch=> {
 dispatch({ type: LOADING_UI })
-axios.get(`/mail/${mailId}`)
+axios.get(`/update/${mailId}`)
 .then(res => {
 	dispatch({
 		type: SET_MAIL,
@@ -47,22 +47,21 @@ axios.get(`/mail/${mailId}`)
 }
 
 //post a scream
-
 export const postMail = (newMail) => (dispatch) => {
 	dispatch({type: LOADING_UI});
 	axios
-	  .post('/update', newMail)
+	  .post('/mail', newMail)
 	  .then(res => {
 	 	dispatch({
 	 		type: POST_MAIL,
 	 		payload: res.data
 	 	})
-	 	dispatch({ type: CLEAR_ERRORS })
+	 	dispatch(clearErrors())
 	 })
 	 .catch(err => {
 	 	dispatch({
 	 		type: SET_ERRORS,
-	 		payload: err.res.data
+	 		payload: err.response.data
 	 	})
 	 }) 
 } 

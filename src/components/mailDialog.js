@@ -20,12 +20,8 @@ import UnfoldMore from '@material-ui/icons/UnfoldMore';
 import { connect } from 'react-redux';
 import { getMail } from '../redux/actions/dataactions';
 
-const styles = theme => ({
-	...theme,
-	invisibleSeparator : {
-		border: 'none',
-		margin: 4
-	}
+const styles = (theme)=> ({
+	...theme.spread1	
 })
 
 class MailDialog extends Component {
@@ -57,7 +53,9 @@ class MailDialog extends Component {
 	 } = this.props;
 
 	 const dialogMarkup = loading ? (
-	 	<CircularProgress size={200} />
+	 	<div className={classes.spinnerDiv}>
+	 	<CircularProgress size={200} thickness={2}/>
+	 	</div>
 	 	) : (
 	 	<Grid container spacing={16}>
 	 	 <Grid item sm={5}>
@@ -104,7 +102,7 @@ class MailDialog extends Component {
 			 <DialogContent className={classes.DialogContent}>
 			  {dialogMarkup}
 			 </DialogContent>
-			<Dialog/>
+			</Dialog>
 		</Fragment>
 	)
 	}

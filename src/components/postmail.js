@@ -66,7 +66,10 @@ class PostMail extends Component {
 
 	render(){
 		const { errors } = this.state;
-		const { classes, UI:{ loading}} = this.props
+		const { 
+			classes, 
+			UI:{ loading}
+		} = this.props;
 
 		return (
 			<Fragment> 
