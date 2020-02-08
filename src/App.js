@@ -20,7 +20,7 @@ import signup from './pages/signup';
 import axios from 'axios';
 
 //components
-import Navbar from './components/navbar';
+import Navbar from './components/layout/navbar';
 import AuthRoute from './util/authroute';
 
 const theme = createMuiTheme(themeFile);

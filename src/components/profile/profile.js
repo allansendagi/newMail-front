@@ -4,7 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import EditDetails from './editdetails';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
 //mui
 import Button from '@material-ui/core/Button';
@@ -16,7 +16,7 @@ import Paper from '@material-ui/core/Paper';
 
 //redux
 import { connect } from 'react-redux';
-import { logoutUser, uploadImage } from '../redux/actions/useractions';
+import { logoutUser, uploadImage } from '../../redux/actions/useractions';
 //icons
 import LocationOn from '@material-ui/icons/LocationOn';
 import LinkIcon from '@material-ui/icons/Link';

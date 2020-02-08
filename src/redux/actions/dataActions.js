@@ -20,7 +20,6 @@ export const getMails = () => (dispatch) => {
 	 .get('/mails')
 	 .then(res=> {
 	 	dispatch({
-
 	 		type: SET_MAILS,
 	 		payload: res.data
 	 	})

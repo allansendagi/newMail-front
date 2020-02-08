@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
 //MUI stuff
 import Button from '@material-ui/core/Button';
@@ -12,7 +12,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteOutline from '@material-ui/icons/DeleteOutline'
 
 import { connect } from 'react-redux';
-import { deleteMail } from '../redux/actions/dataactions';
+import { deleteMail } from '../../redux/actions/dataactions';
 
 const styles = {
 	deleteButton: {

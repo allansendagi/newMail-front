@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import Mail from '../components/Mail';
-import Profile from '../components/profile';
+import Mail from '../components/mail/Mail';
+import Profile from '../components/profile/profile';
 import { connect } from 'react-redux';
 import { getMails } from '../redux/actions/dataactions';
 

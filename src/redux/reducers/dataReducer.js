@@ -38,9 +38,9 @@ export default function(state=initialState, action) {
 			(mail)=> mail.mailId===action.payload.mailId
 			);
 		state.mails[index] = action.payload;
-		// if (state.mail.mailId === action.payload.mailId){
-		// 	state.mail = action.payload;
-		// }
+		if (state.mail.mailId === action.payload.mailId){
+			state.mail = action.payload;
+		}
 		return {
 			...state
 		}
