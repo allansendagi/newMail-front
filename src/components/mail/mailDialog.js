@@ -4,6 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import MyButton from '../../util/MyButton';
 import LikeButton from './likebutton';
 import Comments from './comments';
+import CommentForm from './commentform';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 
@@ -20,7 +21,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 
 //Redux
 import { connect } from 'react-redux';
-import { getMail } from '../../redux/actions/dataactions';
+import { getMail, clearErrors } from '../../redux/actions/dataactions';
 
 const styles = (theme)=> ({
 	...theme.spread1	
@@ -36,6 +37,8 @@ class MailDialog extends Component {
 	}
 	handleClose = () => {
 		this.setState({ open: false})
+		this.props.clearErrors()
+
 	}
 
 	render() {
@@ -88,7 +91,8 @@ class MailDialog extends Component {
 			  </MyButton>
 			   <span>{commentCount}comments</span>
 	 	 </Grid>
-	 	 <hr className={classes.visibleSeparator}/>
+	 	   <hr className={classes.visibleSeparator}/>
+	 	   <CommentForm mailId={mailId} />
 	 	  <Comments comments={comments} />
 	 	</Grid>
 	 	)
@@ -119,6 +123,7 @@ class MailDialog extends Component {
 	}
 }
 MailDialog.propTypes = {
+	clearErrors: PropTypes.func.isRequired,
 	getMail: PropTypes.func.isRequired,
 	mailId: PropTypes.string.isRequired,
 	userHandle: PropTypes.string.isRequired,
@@ -132,7 +137,8 @@ const mapStateToprops = state => ({
 })
 
 const mapActionToProps = {
-	getMail
+	getMail,
+	clearErrors
 }
 export default connect(mapStateToprops,mapActionToProps)(withStyles(styles)(MailDialog));
 

@@ -8,7 +8,8 @@ import { SET_MAILS,
 	    POST_MAIL,
 	    CLEAR_ERRORS,
 	    LOADING_UI,
-	    STOP_LOADING_UI
+	    STOP_LOADING_UI,
+	    SUBMIT_COMMENT
 	} from '../types';
 
 import axios from 'axios';
@@ -90,6 +91,24 @@ export const unlikeMail = (mailId) => (dispatch) => {
 	 })
 	 .catch(err => console.log(err))
 
+}
+
+//submit comment
+export const submitComment = (mailId, commentData) => (dispatch) => {
+	axios.post(`/update/${mailId}/comment`, commentData)
+	 .then(res => {
+	 	dispatch({
+	 		type: SUBMIT_COMMENT,
+	 		payload: res.data
+	 	});
+	 	dispatch(clearErrors())
+	 })
+	 .catch(err => {
+	 	dispatch({
+	 		type: SET_ERRORS,
+	 		payload: err.response.data
+	 	})
+	 })
 }
 export const deleteMail = (mailId) => (dispatch)=> {
 	axios.delete(`/mail/&{mailId}`)
