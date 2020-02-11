@@ -4,7 +4,8 @@ import {
   SET_UNAUTHENTICATED, 
   LOADING_USER,
   LIKE_MAIL,
-  UNLIKE_MAIL
+  UNLIKE_MAIL,
+  MARK_NOTIFICATIONS_READ
 } from '../types'
 
 const initialState = {
@@ -51,6 +52,11 @@ export default function(state = initialState, action){
 		 return {
 		 	...state,
 		 	likes: state.likes.filter(like => like.mailId !== action.payload.mailId)
+		 }
+		 case MARK_NOTIFICATIONS_READ:
+		 state.notifications.forEach(not => not.read = true);
+		 return {
+		 	...state
 		 }
 		default:
 			return state

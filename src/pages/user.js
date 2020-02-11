@@ -10,11 +10,17 @@ import { getUserData } from '../redux/actions/dataactions';
 
 class User extends Component {
 	state = {
-		profile: null
+		profile: null,
+		mailIdParam:null
 	}
 
 	componentDidMount(){
 		const handle = this.props.match.params.handle;
+		const mailId = this.props.match.params.mailId;
+
+		if (mailId) {
+			this.setState({ mailIdParam: mailId });
+		}
 		this.props.getUserData(handle);
 		axios.get(`/user/${handle}`)
 			  .then(res => {
@@ -26,12 +32,20 @@ class User extends Component {
 	}
 	render() {
 		const { mails, loading } = this.props.data;
+		const { mailIdParam } = this.state;
+
 		const mailsMarkup = loading ? (
 			<p>Loading data ...</p>
 			) : mails === null ? (
 			 <p> No mails from this user</p>
-			) : (
+			) : !mailIdParam ? (
 			mails.map(mail => <Mail key={mail.mailId} mail={mail} />)
+			) : (
+			   mails.map(mail => {
+			   	if (mail.mailId !== mailIdParam) 
+			   		return <Mail key={mail.mailId} mail={mail} />
+			   		else return <Mail key={mail.mailId} mail={mail} openDialog /> 
+			   })
 			)
 
 

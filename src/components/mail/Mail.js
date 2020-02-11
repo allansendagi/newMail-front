@@ -86,7 +86,7 @@ class Mail extends Component {
 			     <ChatIcon color='primary' />
 			    </MyButton>
 			    <span>{commentCount} comments</span>
-			    <MailDialog mailId={mailId} userHandle={userHandle} />
+			    <MailDialog mailId={mailId} userHandle={userHandle} openDialog={this.props.openDialog}/>
 			  </CardContent>  
 			</Card>
 		)
@@ -95,7 +95,8 @@ class Mail extends Component {
 Mail.propTypes = {
     user: PropTypes.object.isRequired,
     mail: PropTypes.object.isRequired,
-    classes: PropTypes.object.isRequired
+    classes: PropTypes.object.isRequired,
+    openDialog: PropTypes.bool
 
 }
 const mapStateToProps = state => ({
