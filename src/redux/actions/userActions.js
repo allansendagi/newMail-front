@@ -3,7 +3,8 @@ import { SET_USER,
 	CLEAR_ERRORS, 
 	LOADING_UI,
 	SET_UNAUTHENTICATED,
-	LOADING_USER
+	LOADING_USER,
+	MARK_NOTIFICATIONS_READ
 } from '../types';
 import axios from 'axios';
 
@@ -75,7 +76,7 @@ export const editUserDetails = (userDetails) => (dispatch) => {
 	 .catch(err => console.log(err))
 }
 
-export const markNoificationsRead = (notifications) => dispatch => {
+export const markNotificationsRead = (notificationIds) => dispatch => {
 	axios.post('/notifications', notificationIds)
 		.then(res => {
 			dispatch({

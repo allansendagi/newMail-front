@@ -5,6 +5,8 @@ import Mail from '../components/mail/Mail';
 import StaticProfile from '../components/profile/staticprofile';
 import Grid from '@material-ui/core/Grid';
 
+import MailSkeleton from '../util/mailskeleton';
+
 import { connect } from 'react-redux';
 import { getUserData } from '../redux/actions/dataactions';
 
@@ -35,7 +37,7 @@ class User extends Component {
 		const { mailIdParam } = this.state;
 
 		const mailsMarkup = loading ? (
-			<p>Loading data ...</p>
+			<MailSkeleton />
 			) : mails === null ? (
 			 <p> No mails from this user</p>
 			) : !mailIdParam ? (

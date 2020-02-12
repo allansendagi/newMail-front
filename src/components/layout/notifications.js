@@ -15,18 +15,30 @@ import Badge from '@material-ui/core/Badge';
 //icons
 
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import FavouriteIcon from '@material-ui/icons/Favourite';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChatIcon from '@material-ui/icons/Chat';
 
 //redux stuff
 
 import { connect } from 'react-redux';
-import { markNotoficationsRead } from '../../redux/actions/userActions';
+import { markNotificationsRead } from '../../redux/actions/useractions';
 
 class Notifications extends Component {
 	state = {
 		anchorEl: null,
 
+	}
+	handleOpen=(event)=> {
+		this.setState({ anchorEl:event.target});
+	}
+	handleClose = () => {
+		this.setState({ anchorEl: null })
+	}
+	onMenuOpened = () => {
+		let unreadNotificationsIds = this.props.notifications
+		.filter(not => !not.read)
+		.map(not => not.notificationId);
+		this.props.markNotificationsRead(unreadNotificationsIds);
 	}
 	render(){
 		const notifications = this.props.notifications;
@@ -38,15 +50,18 @@ class Notifications extends Component {
 
 		if(notifications && notifications.length > 0) {
 			notifications.filter(not => not.read===false).length > 0
-			? notificationsIcon = (
-				<Badge badgeContent={notifications.filter(not => not.read===false).length}
-				color='secondary'>
+			? (notificationsIcon = (
+				<Badge 
+				  badgeContent={
+				  	notifications.filter(not => not.read===false).length
+				  }
+				  color='secondary'
+				  >
 				 <NotificationsIcon />
 				</Badge>
-				) : (
-				notificationsIcon = <NotificationsIcon />
-			)
-				else {
+				)) : 
+				(notificationsIcon = <NotificationsIcon />)
+			} else {
 				notificationsIcon = <NotificationsIcon />
 				}
 				let notificationsMarkup = 
@@ -55,8 +70,9 @@ class Notifications extends Component {
 						const verb = not.type === 'like' ? 'liked' : 'commented on';
 						const time = dayjs(not.createdAt).fromNow();
 						const iconColor = not.read ? 'primary': 'secondary';
-						const icon = not.type === 'like' ? (
-							<FavouriteIcon color={iconColor} style={{marginRight:10}} />
+						const icon = 
+						  not.type === 'like' ? (
+							<FavoriteIcon color={iconColor} style={{marginRight:10}} />
 							) : (
 							<ChatIcon color={iconColor} style={{ marginRight: 10}} />
 						)
@@ -100,16 +116,19 @@ class Notifications extends Component {
 				)
 		}
 	}
-}
+
 Notifications.propTypes = {
-	markNotoficationsRead: PropTypes.func.isRequired,
-	notifications: PropTypes.object.isRequired
+	markNotificationsRead: PropTypes.func.isRequired,
+	notifications: PropTypes.array.isRequired
 }
 const mapStateToProps = state => ({
 	notifications: state.user.notifications
 })
 
-export default connect(mapStateToProps, { markNotoficationsRead })(Notifications);
+export default connect(
+	mapStateToProps, 
+   { markNotificationsRead }
+   )(Notifications);
 
 
 

@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import Mail from '../components/mail/Mail';
 import Profile from '../components/profile/profile';
+import MailSkeleton from '../util/mailskeleton';
 import { connect } from 'react-redux';
 import { getMails } from '../redux/actions/dataactions';
 
@@ -17,7 +18,8 @@ class home extends Component {
 		const { mails,loading } = this.props.data;
 		let recentMailsMarkup = !loading? (
 			mails.map((mail) => <Mail key={mail.mailId} mail={mail} />)
-			) : (<p>Loading...</p>
+			) : (
+			<MailSkeleton />
 		)
 		
 		return (
