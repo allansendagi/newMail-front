@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Mail from '../components/mail/Mail';
 import Profile from '../components/profile/profile';
 import MailSkeleton from '../util/mailskeleton';
+
 import { connect } from 'react-redux';
 import { getMails } from '../redux/actions/dataactions';
 

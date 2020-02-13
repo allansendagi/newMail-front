@@ -6,6 +6,8 @@ import StaticProfile from '../components/profile/staticprofile';
 import Grid from '@material-ui/core/Grid';
 
 import MailSkeleton from '../util/mailskeleton';
+import ProfileSkeleton from '../util/profileskeleton';
+
 
 import { connect } from 'react-redux';
 import { getUserData } from '../redux/actions/dataactions';
@@ -58,7 +60,7 @@ class User extends Component {
 		   </Grid>
 		   <Grid item sm={4} xs={12}>
 		   {this.state.profile ===null ? (
-		   	<p>Loading profile...</p>
+		   	<ProfileSkeleton />
 		   	) : (<StaticProfile profile={this.state.profile}/>)}
 		   </Grid>
 		 </Grid>
